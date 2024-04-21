@@ -5,10 +5,19 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { PricePipe } from '../../pipes/price.pipe';
+import { TruncateNamePipe } from '../../pipes/truncate-name.pipe';
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [RatingModule, FormsModule, ButtonModule, ConfirmPopupModule],
+  imports: [ 
+    RatingModule, 
+    FormsModule, 
+    ButtonModule, 
+    ConfirmPopupModule,
+    PricePipe,
+    TruncateNamePipe
+  ],
   providers: [ConfirmationService],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss'
@@ -22,10 +31,6 @@ export class ProductComponent {
   @Input() product!: IProduct;
   @Output() edit: EventEmitter<IProduct> = new EventEmitter<IProduct>();
   @Output() delete: EventEmitter<IProduct> = new EventEmitter<IProduct>();
-
-  trancateName(name: string) {
-    return name.length > 16 ? name.substring(0, 16) + '...' : name;
-  }
 
   editProduct() {
     this.edit.emit(this.product);
