@@ -18,7 +18,7 @@ export interface IOptions {
 }
 
 export interface IProduct {
-  id: number;
+  id?: number;
   name: string;
   price: string;
   rating: number;
